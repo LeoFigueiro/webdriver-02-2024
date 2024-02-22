@@ -2,6 +2,8 @@ package com.test;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -49,7 +51,32 @@ public class WebElementTest {
 		//elemento está habilitado?
 		assertTrue(textField1.isEnabled());
 		//elemento está desabilitado?
-		assertFalse(textField2.isEnabled());			
-		
+		assertFalse(textField2.isEnabled());					
 	}
+	
+	@Test
+	public void testValidaRadioButton() throws InterruptedException {
+		//mapeia
+		List<WebElement> radios = driver.findElements(By.name("radioGroup1"));	
+		
+		//faz a iteração
+		for (WebElement radio : radios) {
+			if (radio.getAttribute("value").equals("Radio 3")) {
+				radio.click();
+			}			
+		}
+		
+		//Outra forma de fazer por posição
+		//radios.get(2).click();
+		
+		Thread.sleep(3000);
+		//faz a validação
+		assertTrue(radios.get(2).isSelected());
+		
+		assertFalse(radios.get(0).isSelected());
+		assertFalse(radios.get(1).isSelected());
+		assertFalse(radios.get(3).isSelected());		
+	}
+	
+	
 }
