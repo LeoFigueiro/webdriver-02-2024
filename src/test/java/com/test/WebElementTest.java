@@ -6,16 +6,18 @@ import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class WebElementTest {
 	
 	private WebDriver driver;
-
+	
 	@Before
 	public void setUp() throws Exception {
 		//Identifica o driver do browser
@@ -33,7 +35,7 @@ public class WebElementTest {
 	}
 
 	@Test
-	public void testInputTextFieldHelloWorld() throws InterruptedException {
+	public void testInputTextFieldHelloWorld() {
 		//identifica o elemento
 		WebElement textField = driver.findElement(By.name("txtbox1"));	
 		//envia um valor de texto para o elemento		
@@ -55,7 +57,7 @@ public class WebElementTest {
 	}
 	
 	@Test
-	public void testValidaRadioButton() throws InterruptedException {
+	public void testValidaRadioButton() {
 		//mapeia
 		List<WebElement> radios = driver.findElements(By.name("radioGroup1"));	
 		
@@ -79,23 +81,40 @@ public class WebElementTest {
 	@Test
 	public void testValidaCheckBox() {
 		//mapeia
-		List<WebElement> checkBoxes = driver.findElements(By.name("chkbox"));		
+		List<WebElement> checkBoxes = driver.findElements(By.name("chkbox"));
+		
+		//valida se a lista tem 4 elementos
+		assertEquals(4, checkBoxes.size());
 
 		//faz a iteração com elemnto
 		for (WebElement checkBox : checkBoxes) {
 			if (checkBox.getAttribute("value").equals("Check 3") || 
 					(checkBox.getAttribute("value").equals("Check 4"))) {
 				checkBox.click();
-			}
-			
+			}			
 		}		
-		
+				
 		//faz a validação
 		assertTrue(checkBoxes.get(2).isSelected());
 		assertTrue(checkBoxes.get(3).isSelected());
 		
 		assertFalse(checkBoxes.get(0).isSelected());
 		assertFalse(checkBoxes.get(1).isSelected());		
+	}
+	
+	@Test
+	public void testValidaSelectSingle() {
+		//mapeia o elemento
+		WebElement dropdownSingle = driver.findElement(By.name("dropdownlist"));		
+		Select selectSingle = new Select(dropdownSingle);
+		
+		//faz a iteração
+		selectSingle.selectByVisibleText("Item 6");		
+		
+		selectSingle.selectByVisibleText("Item 7");
+		
+		//faz a validação
+		assertEquals("Item 7", selectSingle.getFirstSelectedOption().getText());
 	}
 	
 	
