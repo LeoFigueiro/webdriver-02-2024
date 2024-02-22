@@ -28,6 +28,7 @@ public class WebElementTest {
 
 	@After
 	public void tearDown() throws Exception {
+		Thread.sleep(3000);
 		driver.quit();		
 	}
 
@@ -36,9 +37,8 @@ public class WebElementTest {
 		//identifica o elemento
 		WebElement textField = driver.findElement(By.name("txtbox1"));	
 		//envia um valor de texto para o elemento		
-		textField.sendKeys("Hello World!!");		
-		//espera 3 segundos
-		Thread.sleep(3000);
+		textField.sendKeys("Hello World!!");				
+		
 		//valida o resultado esperado é igual ao resultado atual
 		assertEquals("Hello World!!", textField.getAttribute("value"));
 	}
@@ -64,18 +64,38 @@ public class WebElementTest {
 			if (radio.getAttribute("value").equals("Radio 3")) {
 				radio.click();
 			}			
-		}
-		
+		}		
 		//Outra forma de fazer por posição
 		//radios.get(2).click();
-		
-		Thread.sleep(3000);
+				
 		//faz a validação
 		assertTrue(radios.get(2).isSelected());
 		
 		assertFalse(radios.get(0).isSelected());
 		assertFalse(radios.get(1).isSelected());
 		assertFalse(radios.get(3).isSelected());		
+	}
+	
+	@Test
+	public void testValidaCheckBox() {
+		//mapeia
+		List<WebElement> checkBoxes = driver.findElements(By.name("chkbox"));		
+
+		//faz a iteração com elemnto
+		for (WebElement checkBox : checkBoxes) {
+			if (checkBox.getAttribute("value").equals("Check 3") || 
+					(checkBox.getAttribute("value").equals("Check 4"))) {
+				checkBox.click();
+			}
+			
+		}		
+		
+		//faz a validação
+		assertTrue(checkBoxes.get(2).isSelected());
+		assertTrue(checkBoxes.get(3).isSelected());
+		
+		assertFalse(checkBoxes.get(0).isSelected());
+		assertFalse(checkBoxes.get(1).isSelected());		
 	}
 	
 	
