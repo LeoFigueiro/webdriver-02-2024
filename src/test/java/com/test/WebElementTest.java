@@ -30,7 +30,7 @@ public class WebElementTest {
 
 	@After
 	public void tearDown() throws Exception {
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		driver.quit();		
 	}
 
@@ -103,19 +103,48 @@ public class WebElementTest {
 	}
 	
 	@Test
-	public void testValidaSelectSingle() {
+	public void testValidaSelectSingle() throws InterruptedException {
 		//mapeia o elemento
 		WebElement dropdownSingle = driver.findElement(By.name("dropdownlist"));		
 		Select selectSingle = new Select(dropdownSingle);
 		
 		//faz a iteração
-		selectSingle.selectByVisibleText("Item 6");		
-		
+		selectSingle.selectByIndex(5);		
 		selectSingle.selectByVisibleText("Item 7");
 		
 		//faz a validação
 		assertEquals("Item 7", selectSingle.getFirstSelectedOption().getText());
 	}
 	
+	@Test
+	public void testValidaSelectMulti() {
+		WebElement dropdownMulti = driver.findElement(By.name("multiselectdropdown"));
+		
+		Select selectMulti = new Select(dropdownMulti);
+		
+		selectMulti.selectByVisibleText("Item 5");
+		selectMulti.selectByVisibleText("Item 8");
+		selectMulti.selectByVisibleText("Item 9");				
+		
+		List<WebElement> optionsSelected = selectMulti.getAllSelectedOptions();
+		
+		//Valida 3 selecionados // Quantos
+		assertEquals(3, optionsSelected.size());
+		
+		//Quais
+		assertEquals("Item 5", optionsSelected.get(0).getText());
+		assertEquals("Item 8", optionsSelected.get(1).getText());
+		assertEquals("Item 9", optionsSelected.get(2).getText());
+		
+		selectMulti.deselectByVisibleText("Item 8");
+		
+		optionsSelected = selectMulti.getAllSelectedOptions();
+		
+		//Quantos
+		assertEquals(2, optionsSelected.size());
+		///Quais
+		assertEquals("Item 5", optionsSelected.get(0).getText());
+		assertEquals("Item 9", optionsSelected.get(1).getText());
+	}
 	
 }
