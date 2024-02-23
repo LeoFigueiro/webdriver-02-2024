@@ -1,13 +1,15 @@
 package com.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -145,6 +147,18 @@ public class WebElementTest {
 		///Quais
 		assertEquals("Item 5", optionsSelected.get(0).getText());
 		assertEquals("Item 9", optionsSelected.get(1).getText());
+	}
+	
+	@Test
+	public void testValidaAlert() throws InterruptedException {
+		WebElement btnAlert = driver.findElement(By.name("alertbtn"));
+		btnAlert.click();
+		
+		Alert alert = driver.switchTo().alert();
+		assertEquals("Eu sou um alerta!", alert.getText());
+		
+		Thread.sleep(3000);
+		alert.accept();		
 	}
 	
 }
