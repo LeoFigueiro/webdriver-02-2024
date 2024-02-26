@@ -32,7 +32,7 @@ public class WebElementTest {
 
 	@After
 	public void tearDown() throws Exception {
-		Thread.sleep(5000);
+		Thread.sleep(3000);
 		driver.quit();		
 	}
 
@@ -158,7 +158,61 @@ public class WebElementTest {
 		assertEquals("Eu sou um alerta!", alert.getText());
 		
 		Thread.sleep(3000);
-		alert.accept();		
+		alert.accept();			
+		
 	}
 	
+	@Test
+	public void testValidaPrompt() throws InterruptedException {
+		WebElement btnPrompt = driver.findElement(By.id("promptBtn"));
+		btnPrompt.click();
+		
+		Alert alert01 = driver.switchTo().alert();
+		assertEquals("Digite o ano:", alert01.getText());	
+		alert01.sendKeys("2024");
+	
+		Thread.sleep(3000);
+		
+		alert01.accept();
+		
+		Alert alert02 = driver.switchTo().alert();
+		assertEquals("O ano é 2024?", alert02.getText());
+		
+		Thread.sleep(3000);
+		
+		alert02.accept();
+		
+		Alert alert03 = driver.switchTo().alert();
+		assertEquals("Feito!", alert03.getText());
+		
+		Thread.sleep(3000);
+		alert03.accept();				
+	}
+	
+	@Test
+	public void testValidaPromptCancel() throws InterruptedException {
+		WebElement btnPrompt = driver.findElement(By.id("promptBtn"));
+		btnPrompt.click();
+		
+		Alert alert01 = driver.switchTo().alert();
+		assertEquals("Digite o ano:", alert01.getText());	
+		alert01.sendKeys("2024");
+	
+		Thread.sleep(3000);
+		
+		alert01.accept();
+		
+		Alert alert02 = driver.switchTo().alert();
+		assertEquals("O ano é 2024?", alert02.getText());
+		
+		Thread.sleep(3000);
+		
+		alert02.dismiss();
+		
+		Alert alert03 = driver.switchTo().alert();
+		assertEquals("Nada feito!", alert03.getText());
+		
+		Thread.sleep(3000);
+		alert03.accept();				
+	}	
 }
