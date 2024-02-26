@@ -215,4 +215,18 @@ public class WebElementTest {
 		Thread.sleep(3000);
 		alert03.accept();				
 	}	
+	
+	@Test
+	public void testValidaIframe() {
+		//Entra no iframe
+		driver.switchTo().frame("frame1");
+		
+		WebElement tfIframe = driver.findElement(By.id("tfiframe"));
+		tfIframe.sendKeys("Automação de testes com WebDriver");
+		
+		assertEquals("Automação de testes com WebDriver", tfIframe.getAttribute("value"));
+		
+		//Volta o foco do driver para a origem
+		driver.switchTo().defaultContent();
+	}
 }
