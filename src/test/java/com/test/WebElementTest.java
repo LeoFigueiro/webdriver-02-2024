@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -34,7 +35,7 @@ public class WebElementTest {
 	public void tearDown() throws Exception {		
 		driver.quit();		
 	}
-
+	
 	@Test
 	public void testInputTextFieldHelloWorld() {
 		//identifica o elemento
