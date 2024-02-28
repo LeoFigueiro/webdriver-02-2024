@@ -38,7 +38,7 @@ public class WebElementTest {
 	@Test
 	public void testInputTextFieldHelloWorld() {
 		//identifica o elemento
-		WebElement textField = driver.findElement(By.name("txtbox1"));	
+		WebElement textField = driver.findElement(By.xpath("//input[@name='txtbox1']"));	
 		//envia um valor de texto para o elemento		
 		textField.sendKeys("Hello World!!");				
 		
