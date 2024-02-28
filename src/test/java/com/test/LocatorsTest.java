@@ -37,5 +37,21 @@ public class LocatorsTest {
 		assertTrue(checkBox.isSelected());				
 	}
 	
+	@Test
+	public void testCopyEmail() {
+		String nome = "Fulano da Silva";
+		
+		WebElement cellEmail = driver.findElement(By.xpath("//td[contains(text(),'"+ nome +"')]/following-sibling::td[1]"));
+		String email = cellEmail.getText();
+		
+		WebElement tfEmailReserva = driver.findElement(By.id("txt01"));
+		tfEmailReserva.sendKeys(email);
+		
+		assertEquals("mail2@gmail.com", tfEmailReserva.getAttribute("value"));
+		
+	}
+	
+	
+	
 
 }
