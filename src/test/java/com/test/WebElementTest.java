@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.time.Duration;
 import java.util.List;
 
 import org.junit.After;
@@ -27,6 +28,8 @@ public class WebElementTest {
 		//System.setProperty("webdriver.chrome.driver", "C:\\driver\\chromedriver.exe");
 		//Criando o driver do tipo chromedriver
 		driver = new ChromeDriver();
+		//espera implicita
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));		
 		driver.get("https://antoniotrindade.com.br/treinoautomacao/elementsweb.html");		
 	}
 

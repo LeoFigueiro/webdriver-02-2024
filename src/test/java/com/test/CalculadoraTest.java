@@ -2,6 +2,8 @@ package com.test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.time.Duration;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,6 +11,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CalculadoraTest {
 	
@@ -16,14 +20,22 @@ public class CalculadoraTest {
 	private WebElement tfNumber1;
 	private WebElement tfNumber2;
 	private WebElement tfTotal;
+	private WebDriverWait wait;	
 	
 	
 	@Before
 	public void setUp() throws Exception {		
 		System.setProperty("webdriver.chrome.driver", "/home/atrindade/Dev/drivers/chromedriver");		
 		driver = new ChromeDriver();
+		
+		//espera implícita
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		
 		driver.get("https://antoniotrindade.com.br/treinoautomacao/desafiosoma.html");
 		Thread.sleep(3000);
+		
+		//espera explícita
+		wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 		
 		//mapeia elemento
 		tfNumber1 = driver.findElement(By.xpath("//*[@id='number1']"));				
@@ -34,7 +46,6 @@ public class CalculadoraTest {
 
 	@After
 	public void tearDown() throws Exception {
-		Thread.sleep(3000);
 		driver.quit();	
 	}
 	
@@ -52,8 +63,8 @@ public class CalculadoraTest {
 		WebElement btnSomar = driver.findElement(By.xpath("//input[@value='Somar']"));
 		btnSomar.click();
 		
-		//TODO alterar espera
-		Thread.sleep(3000);
+		//espera explícita			
+		wait.until(ExpectedConditions.textToBePresentInElementValue(By.id("total"), Double.toString(totalTest)));
 				
 		String totalCalculadora = tfTotal.getAttribute("value");		
 		assertEquals(Double.toString(totalTest), totalCalculadora);						
