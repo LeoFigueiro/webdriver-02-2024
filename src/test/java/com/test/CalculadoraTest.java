@@ -32,7 +32,6 @@ public class CalculadoraTest {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		
 		driver.get("https://antoniotrindade.com.br/treinoautomacao/desafiosoma.html");
-		Thread.sleep(3000);
 		
 		//espera explícita
 		wait = new WebDriverWait(driver, Duration.ofSeconds(5));
@@ -40,8 +39,7 @@ public class CalculadoraTest {
 		//mapeia elemento
 		tfNumber1 = driver.findElement(By.xpath("//*[@id='number1']"));				
 		tfNumber2 = driver.findElement(By.id("number2"));
-		tfTotal = driver.findElement(By.id("total"));
-		
+		tfTotal = driver.findElement(By.id("total"));		
 	}
 
 	@After
