@@ -54,7 +54,7 @@ public class CalculadoraTest extends BaseTest{
 		wait.until(ExpectedConditions.textToBePresentInElementValue(By.id("total"), Double.toString(totalTest)));
 				
 		String totalCalculadora = tfTotal.getAttribute("value");		
-		assertEquals(Double.toString(totalTest), totalCalculadora);						
+		assertEquals("Deveria ter realizado a soma!",  Double.toString(totalTest), totalCalculadora);						
 	}
 	
 	@Test
