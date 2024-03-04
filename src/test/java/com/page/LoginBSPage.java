@@ -7,8 +7,8 @@ import org.openqa.selenium.WebElement;
 
 public class LoginBSPage {
 	
-	public LoginBSPage open() {		
-		getDriver().get("http://sahitest.com/demo/training/login.htm");
+	public LoginBSPage open(String url) {		
+		getDriver().get(url);
 		return this;		
 	}
 	
@@ -24,12 +24,24 @@ public class LoginBSPage {
 		return this;
 	}
 	
-	public IndexBSPage clickLogin() {
+	public IndexBSPage clickLoginValido() {
 		WebElement btnLogin = getDriver().findElement(By.xpath("//input[@value='Login']"));
 		btnLogin.click();
 		
 		return new IndexBSPage();
 		
+	}
+	
+	public LoginBSPage clickLoginInvalido() {
+		WebElement btnLogin = getDriver().findElement(By.xpath("//input[@value='Login']"));
+		btnLogin.click();
+		
+		return this;
+	}
+	
+	public String getMessageError() {
+		WebElement labelMessage = getDriver().findElement(By.id("errorMessage"));		
+		return labelMessage.getText();
 	}
 
 }
