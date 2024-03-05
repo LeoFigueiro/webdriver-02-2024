@@ -41,9 +41,7 @@ public class LoginBSTest extends BaseTest{
 		loginPage.clickLoginInvalido();
 		
 		assertEquals("Mensagem deveria estar disponibilizada na tela", 
-				"Invalid username or password", loginPage.getMessageError());
-		
-		
+				"Invalid username or password", loginPage.getMessageError());		
 		
 	}
 	
