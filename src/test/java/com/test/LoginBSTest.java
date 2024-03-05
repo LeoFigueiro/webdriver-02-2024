@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.core.BaseTest;
+import com.core.GlobalProperty;
 import com.page.IndexBSPage;
 import com.page.LoginBSPage;
 
@@ -13,7 +14,7 @@ public class LoginBSTest extends BaseTest{
 	
 	private LoginBSPage loginPage;
 	private IndexBSPage indexPage;
-	private String url = "http://sahitest.com/demo/training/login.htm";
+	private String url = GlobalProperty.getProperty("webdriver.url");
 	
 	@Before
 	public void setUp() {
@@ -23,8 +24,8 @@ public class LoginBSTest extends BaseTest{
 	@Test
 	public void testLoginValido() {				
 		loginPage.open(url);
-		loginPage.inputUser("test");
-		loginPage.inputPassword("secret");
+		loginPage.inputUser(GlobalProperty.getProperty("webdriver.user"));
+		loginPage.inputPassword(GlobalProperty.getProperty("webdriver.pass"));
 		
 		indexPage = loginPage.clickLoginValido();	
 		
@@ -35,7 +36,7 @@ public class LoginBSTest extends BaseTest{
 	@Test
 	public void testLoginPasswordInvalido() {
 		loginPage.open(url);
-		loginPage.inputUser("test");
+		loginPage.inputUser(GlobalProperty.getProperty("webdriver.user"));
 		loginPage.inputPassword("passinvalido");
 		
 		loginPage.clickLoginInvalido();

@@ -20,7 +20,7 @@ public class NavigationTabsTest extends BaseTest{
 	}
 		
 	@Test
-	public void testValidaNavigationForTabs() {
+	public void testValidaNavigationForTabs() throws InterruptedException {
 		assertEquals("Treino Automação de Testes", getDriver().getTitle());
 				
 		WebElement linkDragAndDrop = getDriver().findElement(By.linkText("Drag and Drop"));
@@ -34,12 +34,15 @@ public class NavigationTabsTest extends BaseTest{
 		//Navega nas posições do array
 		getDriver().switchTo().window(tabs.get(1));
 		
+		Thread.sleep(5000);
 		assertEquals("Login", getDriver().getTitle());
 		
 		getDriver().switchTo().window(tabs.get(2));
+		
+		Thread.sleep(3000);
 		assertEquals("Mootools Drag and Drop Example", getDriver().getTitle());		
 	
-		getDriver().switchTo().window(tabs.get(0));
+		getDriver().switchTo().window(tabs.get(0));		
 		assertEquals("Treino Automação de Testes", getDriver().getTitle());
 	}
 

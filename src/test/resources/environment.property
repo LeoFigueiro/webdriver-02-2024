@@ -1,0 +1,5 @@
+webdriver.driver = Firefox
+webdriver.path = /home/atrindade/Dev/drivers/
+webdriver.url = http://sahitest.com/demo/training/login.htm
+webdriver.user = test
+webdriver.pass = secret

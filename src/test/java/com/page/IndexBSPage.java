@@ -3,7 +3,6 @@ package com.page;
 import static com.core.DriverFactory.getDriver;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.By.ByXPath;
 import org.openqa.selenium.WebElement;
 
 public class IndexBSPage {
