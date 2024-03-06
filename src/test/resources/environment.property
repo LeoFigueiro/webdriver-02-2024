@@ -1,4 +1,4 @@
-webdriver.driver = Firefox
+webdriver.driver = Chrome
 webdriver.path = /home/atrindade/Dev/drivers/
 webdriver.url = http://sahitest.com/demo/training/login.htm
 webdriver.user = test

@@ -21,7 +21,8 @@ public class DriverFactory {
 			
 			if (browser.equals("Chrome")) {		
 				System.setProperty("webdriver.chrome.driver", path + "chromedriver");			
-				driver = new ChromeDriver();			
+				driver = new ChromeDriver();
+				driver.manage().window().maximize();
 			}
 			
 			else if (browser.equals("Chrome-headless")) {
