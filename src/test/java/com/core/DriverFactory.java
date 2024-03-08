@@ -16,17 +16,17 @@ public class DriverFactory {
 				 		
 		if (driver == null) {
 			
-			String browser = GlobalProperty.getProperty("webdriver.driver");
+			String browser = GlobalProperty.getProperty("webdriver.driver.exe");
 			String path = GlobalProperty.getProperty("webdriver.path");
 			
 			if (browser.equals("Chrome")) {		
-				System.setProperty("webdriver.chrome.driver", path + "chromedriver");			
+				System.setProperty("webdriver.chrome.driver", path + "chromedriver.exe");			
 				driver = new ChromeDriver();
 				driver.manage().window().maximize();
 			}
 			
 			else if (browser.equals("Chrome-headless")) {
-				System.setProperty("webdriver.chrome.driver", path + "chromedriver");
+				System.setProperty("webdriver.chrome.driver", path + "chromedriver.exe");
 				
 				ChromeOptions options = new ChromeOptions();
 				options.addArguments("--headless");
